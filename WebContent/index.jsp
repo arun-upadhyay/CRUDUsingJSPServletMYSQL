@@ -16,32 +16,32 @@
 </head>
 <body>
 	<div class="container">
-		
+
 		<c:choose>
 			<c:when test="${param.update == 'true'}">
 				<h2>Update Contact Information</h2>
 				<form method="post" action="update-contact" class="form-inline">
-				<c:forEach items="${contactById}" var="val">
-					<input type="hidden" name="id" value="${val.key}">
-					<div class="form-group">
-						<label for="poductname">Name:</label> <input type="name"
-							class="form-control" id="name" name="name"
-							value="${val.value.name}">
-					</div>
-					<div class="form-group">
-						<label for="address">Address:</label> <input type="address"
-							class="form-control" id="address" name="address"
-							value="${val.value.address}">
-					</div>
-					<div class="form-group">
-						<label for="phoneno">Phone no:</label> <input type="phoneno"
-							class="form-control" id="phoneno" name="phoneno"
-							value="${val.value.phoneno}">
-					</div>
-					<button type="submit" class="btn btn-default" value ="Update">Update</button>
+					<c:forEach items="${contactById}" var="val">
+						<input type="hidden" name="id" value="${val.key}">
+						<div class="form-group">
+							<label for="poductname">Name:</label> <input type="name"
+								class="form-control" id="name" name="name"
+								value="${val.value.name}">
+						</div>
+						<div class="form-group">
+							<label for="address">Address:</label> <input type="address"
+								class="form-control" id="address" name="address"
+								value="${val.value.address}">
+						</div>
+						<div class="form-group">
+							<label for="phoneno">Phone no:</label> <input type="phoneno"
+								class="form-control" id="phoneno" name="phoneno"
+								value="${val.value.phoneno}">
+						</div>
+						<button type="submit" class="btn btn-default" value="Update">Update</button>
 					</c:forEach>
 				</form>
-	
+
 			</c:when>
 			<c:otherwise>
 				<h2>Add new Contact Information</h2>
@@ -94,5 +94,10 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<p>
+			Technology Used: Bootstrap, HTML, Servlet, JSP & MYSQL <br><br><br>
+			Designed by<a href="http://www.arunupadhayay.com.np" target="_blank">
+				Arun Kumar Upadhyay</a>
+		</p>
 </body>
 </html>
