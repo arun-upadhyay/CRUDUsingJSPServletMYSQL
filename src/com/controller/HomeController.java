@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.service.ContactService;
 
-@WebServlet(description = "/", urlPatterns = { "/" })
+@WebServlet(description = "/", urlPatterns = { "/home" })
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

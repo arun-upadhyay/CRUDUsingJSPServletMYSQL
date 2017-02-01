@@ -93,4 +93,36 @@ public class ContactService {
 		return null;
 	}
 
+	public void deleteContact(String id) {
+		try {
+			conn = jdbcConnection.getConnection();
+			String query = "DELETE FROM contact WHERE id = ?";
+			pstmt = conn.prepareStatement(query); // create a statement
+			pstmt.setInt(1, Integer.parseInt(id));
+			// execute delete SQL stetement
+			pstmt.executeUpdate();
+			System.out.println("Record is deleted!");
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (pstmt != null)
+					conn.close();
+			} catch (SQLException se) {
+			} // do nothing
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+
+	}
+
 }

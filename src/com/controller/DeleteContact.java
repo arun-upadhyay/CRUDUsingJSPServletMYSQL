@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,10 +25,11 @@ public class DeleteContact extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			ContactService contactService = new ContactService();
-			
-			String id = request.getParameter("id");
-			System.out.println(id);
+		ContactService contactService = new ContactService();
+		contactService.deleteContact(request.getParameter("id"));
+		RequestDispatcher rd = request.getRequestDispatcher("home");
+		rd.forward(request,response);
+
 	}
 
 }
