@@ -16,24 +16,57 @@
 </head>
 <body>
 	<div class="container">
-		<h2>Add new contact information</h2>
-		<form method="post" action="add-contact" class="form-inline">
-			<div class="form-group">
-				<label for="poductname">Name:</label> <input type="name"
-					class="form-control" id="name" name="name" placeholder="Enter name">
-			</div>
-			<div class="form-group">
-				<label for="address">Address:</label> <input type="address"
-					class="form-control" id="address" name="address"
-					placeholder="Enter address">
-			</div>
-			<div class="form-group">
-				<label for="phoneno">Phone no:</label> <input type="phoneno"
-					class="form-control" id="phoneno" name="phoneno"
-					placeholder="Enter phone number">
-			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+		
+		<c:choose>
+			<c:when test="${param.update == 'true'}">
+				<h2>Update Contact Information</h2>
+				<form method="post" action="update-contact" class="form-inline">
+				<c:forEach items="${contactById}" var="val">
+					<input type="hidden" name="id" value="${val.key}">
+					<div class="form-group">
+						<label for="poductname">Name:</label> <input type="name"
+							class="form-control" id="name" name="name"
+							value="${val.value.name}">
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label> <input type="address"
+							class="form-control" id="address" name="address"
+							value="${val.value.address}">
+					</div>
+					<div class="form-group">
+						<label for="phoneno">Phone no:</label> <input type="phoneno"
+							class="form-control" id="phoneno" name="phoneno"
+							value="${val.value.phoneno}">
+					</div>
+					<button type="submit" class="btn btn-default" value ="Update">Update</button>
+					</c:forEach>
+				</form>
+	
+			</c:when>
+			<c:otherwise>
+				<h2>Add new Contact Information</h2>
+				<form method="post" action="add-contact" class="form-inline">
+					<div class="form-group">
+						<label for="poductname">Name:</label> <input type="name"
+							class="form-control" id="name" name="name"
+							placeholder="Enter name">
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label> <input type="address"
+							class="form-control" id="address" name="address"
+							placeholder="Enter address">
+					</div>
+					<div class="form-group">
+						<label for="phoneno">Phone no:</label> <input type="phoneno"
+							class="form-control" id="phoneno" name="phoneno"
+							placeholder="Enter phone number">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</c:otherwise>
+		</c:choose>
+
+
 
 
 		<table class="table table-striped">
@@ -47,16 +80,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 				<c:forEach items="${contactList}" var="val">
 					<tr>
-						<td><c:out value ="${val.value.name}" /></td>
-						<td><c:out value ="${val.value.address}" /></td>
-						<td><c:out value ="${val.value.phoneno}" /></td>
-						<td><a href="/update-contact?id=${val.key}" class="btn btn-info"
-							role="button">Update</a></td>
-						<td><a href="delete-contact?id=${val.key}" class="btn btn-info"
-							role="button">Delete</a></td>
+						<td><c:out value="${val.value.name}" /></td>
+						<td><c:out value="${val.value.address}" /></td>
+						<td><c:out value="${val.value.phoneno}" /></td>
+						<td><a href="update-contact?id=${val.key}"
+							class="btn btn-info" role="button">Update</a></td>
+						<td><a href="delete-contact?id=${val.key}"
+							class="btn btn-info" role="button">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

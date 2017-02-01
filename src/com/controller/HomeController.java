@@ -21,6 +21,7 @@ public class HomeController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("contactList", contactService.getAllContacts());
 		response.sendRedirect("index.jsp");
+		
 	}
 
 }
